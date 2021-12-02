@@ -24,20 +24,9 @@ wtfIsThis :: Int -> Int -> Int -> [[String]] -> (Int, Int)
 wtfIsThis aim depth forward [] = (forward, depth)
 wtfIsThis aim depth forward (x:xs) = if head x == "up" then wtfIsThis (aim - (read (head (tail x)) :: Int)) depth forward xs else if head x == "down" then wtfIsThis (aim + (read (head (tail x)) :: Int)) depth forward xs else wtfIsThis aim (depth + (aim * (read(head(tail x)) :: Int))) (forward + (read(head(tail x)) :: Int)) xs
 
-{-
 
-x <- readInput "input.txt"
-y = mapToTuples x
-calculateForward y * calculateDepth y
-
-
-PART TWO
-
-x <- readInput "input.txt"
-y = mapToTuples x
-wtfIsThis 0 0 0 y
-(1909,760194)
-1909 * 760194
-1451210346
-
--}
+main :: IO()
+main = do
+    x <- readInput "input.txt"
+    let y = mapToTuples x
+    putStrLn $ show $ wtfIsThis 0 0 0 y
