@@ -40,9 +40,6 @@ checkWin bingo = or (map checkBoardWin bingo)
 getWinningScore :: Bingo -> Int
 getWinningScore bingo = sum (map (\row -> sum (map (\(num, bool) -> if bool then 0 else num) row)) (head (filter (\x -> checkBoardWin x) bingo)))
 
-getWinningScorep2 :: Bingo -> Int
-getWinningScorep2 bingo = sum (map (\row -> sum (map (\(num, bool) -> if bool then 0 else num) row)) (head (filter (\x -> not (checkBoardWin x)) bingo)))
-
 playBingo :: Bingo -> [Int] -> Int
 playBingo bingo draw = let aftermath = drawNumber bingo (head draw) in
                            if checkWin aftermath then (getWinningScore aftermath) * (head draw)  else playBingo aftermath (tail draw)
