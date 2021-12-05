@@ -37,11 +37,7 @@ generateMayhem (((x1, y1), (x2, y2)) : xs) = if (x1 /= x2 && y1 /= y2) then
 
 removeDuplicates :: Eq a => [a] -> [a]
 removeDuplicates [] = []
-removeDuplicates (x:xs) = x : removeDuplicates (filter (\y -> y /= x) xs)
-
-solveTask1 :: [Point] -> Int
-solveTask1 pts = let multiple_occupied = map (\x -> (x, length (filter (\y -> y == x) pts))) pts in
-                 length (removeDuplicates multiple_occupied)               
+removeDuplicates (x:xs) = x : removeDuplicates (filter (\y -> y /= x) xs)             
 
 main :: IO()
 main = do
